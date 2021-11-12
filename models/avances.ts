@@ -22,11 +22,14 @@ const avancesSchema = new Schema<Avance>({
         type:String,
         required:true,
 
-    },observaciones:[
+    },
+    //son array porque se necesita intresar varias observaciones
+    observaciones:[
         {
             type:String,
         }
     ],
+    //aqui traemos el id del modelo de proyecto para hacer referencia 
     proyecto:{
         type:Schema.Types.ObjectId,
         ref:ProyectModel,

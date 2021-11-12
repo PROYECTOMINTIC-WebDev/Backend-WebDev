@@ -45,12 +45,12 @@ const projectShema = new Schema<Proyecto>({
     default: Enum_FaseProyecto.nulo,
   },
   lider: {
-    //necesito relacionar con un id que esta relacionado a otro modelo
+    //necesito relacionar con un id que esta relacionado a otro modelo en este caso userModel
     type: Schema.Types.ObjectId,
     required: true,
     ref: UserModel,
   },
-  //aqui colocamos los objetivos como una coleccion de infromacion 
+  //aqui colocamos los objetivos como una coleccion de informacion 
   objetivos: [
     {
       descripcion: {
