@@ -27,30 +27,30 @@ console.log("el proyecti es ",proyecto);
  */
 
 //----------CRUD USUARIOS----------
-  /*  await UserModel.create({
-        correo:"manuelguma25@gmail.com",
-        identificacion: 1007409899,
-        nombre:"Jose",
-        apellido:"guzman1",
-        rol:Enum_Rol.administrador,
-    }).then((u)=>{
-        console.log("usuario creado ", u);
-    }).catch((e)=>{
-        console.log("error al crear usuario ", e);
+    // await UserModel.create({
+    //     correo:"manuelguma25@gmail.com",
+    //     identificacion: 1007409899,
+    //     nombre:"Jose",
+    //     apellido:"guzman1",
+    //     rol:Enum_Rol.administrador,
+    // }).then((u)=>{
+    //     console.log("usuario creado ", u);
+    // }).catch((e)=>{
+    //     console.log("error al crear usuario ", e);
 
-    })  */
+    // })  
 
     //obtener los usuaios 
 
 
-    /* await UserModel.find()
-        .then((u)=>{
-            console.log('usuarios: ',u);
-        }).catch((e)=>{
-            console.log('error es ',e);
+    //  await UserModel.find()
+    //     .then((u)=>{
+    //         console.log('usuarios: ',u);
+    //     }).catch((e)=>{
+    //         console.log('error es ',e);
             
 
-        }) */
+    //     }) 
 
 };
 
