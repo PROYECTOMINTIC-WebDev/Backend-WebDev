@@ -37,12 +37,13 @@ const projectShema = new Schema<Proyecto>({
   estado: {
     type: String,
     enum: Enum_EstadoProyecto,
-    default: Enum_EstadoProyecto.inactivo,
+    default: Enum_EstadoProyecto.INACTIVO,
   },
   fase: {
     type: String,
     enum: Enum_FaseProyecto,
-    default: Enum_FaseProyecto.nulo,
+    
+    default: Enum_FaseProyecto.NULO,
   },
   lider: {
     //necesito relacionar con un id que esta relacionado a otro modelo
