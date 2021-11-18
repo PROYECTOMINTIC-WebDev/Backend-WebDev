@@ -1,7 +1,7 @@
 import ConectarBD from "./DB/db";
-import {UserModel} from "./models/user";
-import { Enum_Rol, Enum_TipoObjetivo } from "./models/enum";
-import { ProyectModel } from "./models/project";
+import {UserModel} from "./models/usuario/usuario";
+import { Enum_Rol, Enum_TipoObjetivo } from "./models/enum/enum";
+import { ProyectModel } from "./models/proyecto/proyecto";
 const main = async ()=>{
 
     await ConectarBD();
@@ -13,9 +13,9 @@ const main = async ()=>{
         FechaFin: new Date("2021/12/25"),
         lider: '618d43ec4071386efb2f312e',
         objetivos:[
-            {descripcion: "este es el objetivo general", tipo:Enum_TipoObjetivo.general},
-            {descripcion: "este es el objetivo especifico 1", tipo:Enum_TipoObjetivo.especifico},
-            {descripcion: "este es el objetivo especifico 2", tipo:Enum_TipoObjetivo.especifico},
+            {descripcion: "este es el objetivo general", tipo:Enum_TipoObjetivo.GENERAL},
+            {descripcion: "este es el objetivo especifico 1", tipo:Enum_TipoObjetivo.ESPECIFICO},
+            {descripcion: "este es el objetivo especifico 2", tipo:Enum_TipoObjetivo.ESPECIFICO},
 
         ]
     });

@@ -4,7 +4,7 @@ import cors from 'cors';
 import { ApolloServer } from 'apollo-server-express';
 import dotenv from 'dotenv';
 import ConectarBD from './DB/db';
-import {typeDefs} from './graphql/types';
+import {tipos} from './graphql/types';
 import {resolvers} from './graphql/resolvers';
 //PARA QUE NOS PERMITE USAR PARIVABOES DE ENTORNO EN TODA LA APLICACION
 dotenv.config();
@@ -12,7 +12,7 @@ dotenv.config();
 //DEFINIMOS  UN SERVIDROD E APOLLO
 
 const server = new ApolloServer({
-    typeDefs:typeDefs,
+    typeDefs:tipos,
     resolvers:resolvers,
 
 });

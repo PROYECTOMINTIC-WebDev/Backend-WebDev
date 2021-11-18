@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
-import { ProyectModel } from "./project";
-import {UserModel} from './user';
+import { ProyectModel } from "../proyecto/proyecto";
+import {UserModel} from '../usuario/usuario';
 //definimos la interfas para el avance
 
 
