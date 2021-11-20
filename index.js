@@ -9,7 +9,7 @@ import {resolvers} from './graphql/resolvers';
 //PARA QUE NOS PERMITE USAR PARIVABOES DE ENTORNO EN TODA LA APLICACION
 dotenv.config();
 
-//DEFINIMOS  UN SERVIDROD E APOLLO
+//DEFINIMOS  UN SERVIDOR DE APOLLO
 
 const server = new ApolloServer({
     typeDefs:tipos,

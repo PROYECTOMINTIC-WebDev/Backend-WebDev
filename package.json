@@ -6,26 +6,25 @@
         "graphql": "^16.0.1",
         "install": "^0.13.0",
         "mongoose": "^6.0.12",
-        "nodemon": "^2.0.15",
-        "ts-node": "^10.4.0",
-        "typescript": "^4.4.4"
-
+        "nodemon": "^2.0.15"
     },
     "name": "webdev",
     "version": "1.0.0",
     "main": "index.js",
-    "devDependencies": {},
     "scripts": {
-        "start": "ts-node index.ts",
-        "dev": "nodemon index.ts",
+        "start": "yarn index.js",
+        "dev": "nodemon index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
-
+    },
+    "type": "module",
+    "devDependencies": {
+        "nodemon": "^2.0.15"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/PROYECTOMINTIC-WebDev/Backend-WebDev.git"
     },
-    "author": "",
+    "author": "WebDev",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/PROYECTOMINTIC-WebDev/Backend-WebDev/issues"
