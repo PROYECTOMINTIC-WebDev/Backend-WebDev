@@ -6,8 +6,9 @@ import {
 } from "./enum";
 import { UserModel } from "./user";
 
+//DATOS QUE VAN EN LA INTERFAZ DE LOS PROYECTOS
 interface Proyecto {
-  nombre: string;
+  nombreProyecto: string;
   presupuesto: number;
   FechaInicio: Date;
   FechaFin: Date;
@@ -18,7 +19,7 @@ interface Proyecto {
 }
 
 const projectShema = new Schema<Proyecto>({
-  nombre: {
+  nombreProyecto: {
     type: String,
     required: true,
   },
@@ -45,12 +46,13 @@ const projectShema = new Schema<Proyecto>({
     default: Enum_FaseProyecto.nulo,
   },
   lider: {
+    //DEL LIDER SE NECESITAN DOS DATOS: NOMBRE E IDENTIFICACIÓN, entonces estos datos se toman desde usuarios ¿cómo se haria eso?
     //necesito relacionar con un id que esta relacionado a otro modelo
     type: Schema.Types.ObjectId,
     required: true,
     ref: UserModel,
   },
-  //aqui colocamos los objetivos como una coleccion de infromacion 
+  //aqui colocamos los objetivos como una coleccion de información 
   objetivos: [
     {
       descripcion: {
