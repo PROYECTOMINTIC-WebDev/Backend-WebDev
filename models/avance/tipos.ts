@@ -1,14 +1,34 @@
 import { gql } from "apollo-server-express";
 
-const tiposAvancel = gql   `
-  type Avance(){
-            fecha:Date!
-            description:String!
-            observaciones:[String]
-            
-            }
+//gql nos permite escrivir  un template de graphQl
+//las comillas sirven para escribir la libreria
+const tiposAvance = gql`
+  type Avance {
+    _id: String
+    fecha: Date!
+    descripcion: String!
+    observaciones: [String]
+    proyecto: Proyecto!
+    creadoPor: Usuario!
+  }
 
-`
+  """
+   colocamos como se llama y que devuelve
+  """
+  type Query {
+    Avances: [Avance]
+    filtrarAvance(idProyecto: String!):[Avance]
 
+  }
+  type Mutation {
+    crearAvance(
+      fecha: Date!
+      descripcion: String!
+      observaciones: [String]
+      proyecto: String!
+      creadoPor: String!
+    ): Avance
 
-export { tiposAvancel };
+  }
+`;
+export  default tiposAvance ;

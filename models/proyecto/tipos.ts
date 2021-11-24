@@ -21,7 +21,7 @@ const tiposProyecto = gql`
     Proyecto: [Proyecto]
   }
 type Objetivo{
-  _id: ID!
+    _id: ID!
     descripcion:String!
     tipo:Enum_TipoObjetivo!
 }
