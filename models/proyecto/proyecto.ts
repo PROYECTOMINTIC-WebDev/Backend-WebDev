@@ -66,8 +66,24 @@ const projectShema = new Schema<Proyecto>({
       },
     },
   ],
+},{
+  toJSON:{virtuals:true},
+  toObject:{virtuals:true},
 });
 
+
+projectShema.virtual('avances',{
+  ref:"Modelo",
+  localField:"_id",
+  foreignField:'proyecto',
+
+})
+projectShema.virtual('inscripciones',{
+  ref:"Incripcion",
+  localField:"_id",
+  foreignField:'proyecto',
+
+})
 const ProyectModel = model("proyecto", projectShema);
 
 export { ProyectModel };
