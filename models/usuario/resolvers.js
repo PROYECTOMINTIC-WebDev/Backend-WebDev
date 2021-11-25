@@ -1,6 +1,6 @@
-import { UserModel } from "./usuario";
+import { UserModel } from "./usuario.js";
 
-const resolverUsuario = {
+const resolversUsuario = {
   Query: {
     //CONSULTA LOS USUARIOS EN LA BD
     Usuario: async (parent, args) => {
@@ -43,4 +43,4 @@ const resolverUsuario = {
   
   },
 };
-export { resolverUsuario };
+export { resolversUsuario };
