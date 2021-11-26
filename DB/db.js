@@ -8,7 +8,7 @@ const ConectarBD = async () => {
     })
     .catch((e)=>{
         console.log("Error conectando a la base de datos",e)
-    })
+    });
 }
 
 export default ConectarBD;

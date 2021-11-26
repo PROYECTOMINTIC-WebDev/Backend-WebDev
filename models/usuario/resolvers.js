@@ -1,10 +1,10 @@
-import { UserModel } from "./usuario.js";
+import { modeloUsuarios } from "./usuario.js";
 
 const resolversUsuario = {
   Query: {
     //CONSULTA LOS USUARIOS EN LA BD
     Usuario: async (parent, args) => {
-      const usuario = await UserModel.find();
+      const usuario = await modeloUsuarios.find();
 
       return usuario;
     },
@@ -12,7 +12,7 @@ const resolversUsuario = {
   },
   Mutation: {
     crearUsuario: async (parent, args) => {
-      const usuariocreado = await UserModel.create({
+      const usuarioCreado = await modeloUsuarios.create({
         nombre: args.nombre,
         apellido: args.apellido,
         identificacion: args.identificacion,
@@ -20,16 +20,16 @@ const resolversUsuario = {
         estado: args.estado,
         rol: args.rol,
       });
-      return usuariocreado;
+      return usuarioCreado;
     },
-    eliminarusuario: async (parent, args) => {
-      const usuarioEliminado = await UserModel.findByIdAndDelete({
+    eliminarUsuario: async (parent, args) => {
+      const usuarioEliminado = await modeloUsuarios.findByIdAndDelete({
         _id: args._id,
       });
       return usuarioEliminado;
     },
     editarUsuario: async (parent, args) => {
-      const usuarioeditar = await UserModel.findByIdAndUpdate(args._id, {
+      const usuarioEditar = await modeloUsuarios.findByIdAndUpdate(args._id, {
         nombre: args.nombre,
         apellido: args.apellido,
         identificacion: args.identificacion,
@@ -37,7 +37,7 @@ const resolversUsuario = {
         estado: args.estado,
         rol: args.rol,
       });
-      return usuarioeditar;
+      return usuarioEditar;
     },
 
   

@@ -3,9 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import { ApolloServer } from 'apollo-server-express';
 import dotenv from 'dotenv';
-import ConectarBD from './DB/db';
-import {tipos} from './graphql/types';
-import {resolvers} from './graphql/resolvers';
+import ConectarBD from './DB/db.js';
+import {tipos} from './graphql/tipos.js';
+import {resolvers} from './graphql/resolvers.js';
 //PARA QUE NOS PERMITE USAR PARIVABOES DE ENTORNO EN TODA LA APLICACION
 dotenv.config();
 

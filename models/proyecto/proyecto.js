@@ -14,7 +14,7 @@ import { modeloUsuarios } from "../usuario/usuario.js";
 
 const { Schema, model } = mongoose;
 
-const projectShema = new Schema({
+const esquemaProyectos = new Schema({
   nombre: {
     type: String,
     required: true,
