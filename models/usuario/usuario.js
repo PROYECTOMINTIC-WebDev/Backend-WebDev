@@ -47,6 +47,6 @@ const esquemaUsuarios = new Schema({
 
 //definimos el modelo para conectarnos a la bd
 
-const modeloUsuarios = model("Usuario", esquemaUsuarios, 'usuarios');
+const modeloUsuarios = model("Usuario", esquemaUsuarios, 'users');
 
 export { modeloUsuarios };
