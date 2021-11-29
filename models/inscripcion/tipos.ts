@@ -1,7 +1,7 @@
 // Pendientes
 import { gql } from "apollo-server-express";
 
-const tiposinscripcion = gql`
+const tiposInscripcion = gql`
   type Inscripcion {
     _id: ID!
     estado: Enum_EstadoInscripcion!
@@ -17,12 +17,16 @@ const tiposinscripcion = gql`
   type Mutation {
     crearInscripcion(
       estado: Enum_EstadoInscripcion!
-
       proyecto: String!
       estudiante: String!
     ): Inscripcion
 
-    aprobarInscrpcion(id: String!): Inscripcion
+    aprobarInscripcion(id: String!): Inscripcion
+    
+    rechazarInscripcion(id: String!): Inscripcion
+
+    cerrarInscripcion(id: String!): Inscripcion
   }
-`;
-export { tiposinscripcion };
+`
+;
+export { tiposInscripcion };

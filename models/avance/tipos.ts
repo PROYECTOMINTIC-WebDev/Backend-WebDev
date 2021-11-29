@@ -1,6 +1,6 @@
 import { gql } from "apollo-server-express";
 
-//gql nos permite escrivir  un template de graphQl
+//gql nos permite escribir un template de graphQL
 //las comillas sirven para escribir la libreria
 const tiposAvance = gql`
   type Avance {

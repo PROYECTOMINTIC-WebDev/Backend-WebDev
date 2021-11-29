@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { Enum_EstadoUsuario, Enum_Rol } from "../enum/enum";
-//interfas para deifiir los tipos de mis elementos
 
+//interfaz para definir los tipos de mis elementos en usuarios
 interface User {
   correo: string;
   identificacion: string;
@@ -44,7 +44,6 @@ const userSchema = new Schema<User>({
 });
 
 //definimos el modelo para conectarnos a la bd
+const modeloUsuarios = model("Usuario", userSchema, 'usuarios');
 
-const UserModel = model("User", userSchema);
-
-export { UserModel };
+export { modeloUsuarios };

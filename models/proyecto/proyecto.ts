@@ -4,7 +4,7 @@ import {
   Enum_FaseProyecto,
   Enum_TipoObjetivo,
 } from "../enum/enum";
-import { UserModel } from "../usuario/usuario";
+import { modeloUsuarios } from "../usuario/usuario";
 
 interface Proyecto {
   nombre: string;
@@ -17,7 +17,7 @@ interface Proyecto {
   objetivos: [{ descripcion: String; tipo: Enum_TipoObjetivo }];
 }
 
-const projectShema = new Schema<Proyecto>({
+const esquemaProyectos = new Schema<Proyecto>({
   nombre: {
     type: String,
     required: true,
@@ -49,7 +49,7 @@ const projectShema = new Schema<Proyecto>({
     //necesito relacionar con un id que esta relacionado a otro modelo
     type: Schema.Types.ObjectId,
     required: true,
-    ref: UserModel,
+    ref: modeloUsuarios,
   },
   //aqui colocamos los objetivos como una coleccion de infromacion 
   objetivos: [
@@ -72,18 +72,18 @@ const projectShema = new Schema<Proyecto>({
 });
 
 
-projectShema.virtual('avances',{
+esquemaProyectos.virtual('avances',{
   ref:"Modelo",
   localField:"_id",
   foreignField:'proyecto',
 
 })
-projectShema.virtual('inscripciones',{
+esquemaProyectos.virtual('inscripciones',{
   ref:"Incripcion",
   localField:"_id",
   foreignField:'proyecto',
 
 })
-const ProyectModel = model("proyecto", projectShema);
+const modeloProyectos = model("Proyecto", esquemaProyectos, 'proyectos');
 
-export { ProyectModel };
+export { modeloProyectos };

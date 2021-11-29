@@ -1,10 +1,7 @@
 import { gql } from "apollo-server-express";
 
 const tiposUsuario = gql`
-  scalar Date
-
-  
-type Usuario {
+  type Usuario {
     _id: ID!
     nombre: String!
     apellido: String!
@@ -16,8 +13,8 @@ type Usuario {
 
   type Query {
     Usuario: [Usuario]
-   
   }
+
   type Mutation {
     crearUsuario(
       nombre: String!
@@ -29,7 +26,7 @@ type Usuario {
       
     ): Usuario
 
-    eliminarusuario(_id: String): Usuario
+    eliminarUsuario(_id: String): Usuario
 
     """
      crear el usuario

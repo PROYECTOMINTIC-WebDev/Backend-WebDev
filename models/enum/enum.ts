@@ -3,6 +3,7 @@ enum Enum_Rol{
     LIDER="LIDER",
     ADMINISTRADOR="ADMINISTRADOR",
 }
+
 enum Enum_EstadoUsuario{
     PENDIENTE="PENDIENTE",
     AUTORIZADO="AUTORIZADO",
@@ -23,9 +24,8 @@ enum Enum_FaseProyecto{
 enum  Enum_TipoObjetivo{
     GENERAL="GENERAL",
     ESPECIFICO="ESPECIFICO",
-
-
 }
+
 enum Enum_EstadoInscripcion{
     ACEPTADA=" ACEPTADA",
     RECHAZADA=" RECHAZADA",
