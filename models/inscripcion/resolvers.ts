@@ -23,7 +23,7 @@ const resolverIncripciones = {
     aprobarInscrpcion: async (parent,args) => {
         const inscripcionAprobada= await IncripcionModel.findByIdAndUpdate(args._id, {
             estado: Enum_EstadoInscripcion.ACEPTADA,
-            fechaIngreso: new Date("2018-03-16"),
+            fechaIngreso: new Date("2018-03-11"),
             
         });
         return inscripcionAprobada;

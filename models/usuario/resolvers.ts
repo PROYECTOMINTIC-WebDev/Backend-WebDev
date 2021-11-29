@@ -8,6 +8,13 @@ const resolverUsuario = {
 
       return usuario;
     },
+    UnUsuario: async (parent, args) => {
+      const usuario = await UserModel.find({
+        usuario:args.idUsuario
+      });
+
+      return usuario;
+    },
   
   },
   Mutation: {

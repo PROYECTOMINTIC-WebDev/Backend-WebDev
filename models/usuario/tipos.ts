@@ -16,6 +16,7 @@ type Usuario {
 
   type Query {
     Usuario: [Usuario]
+    UnUsuario(idUsuario: String!):Usuario
    
   }
   type Mutation {
