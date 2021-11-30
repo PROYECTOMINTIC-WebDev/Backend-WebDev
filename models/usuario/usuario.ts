@@ -9,6 +9,8 @@ interface User {
   apellido: string;
   rol: Enum_Rol;
   estado: Enum_EstadoUsuario;
+  password: string;
+  
 }
 
 const userSchema = new Schema<User>({
@@ -30,6 +32,12 @@ const userSchema = new Schema<User>({
     required: true,
     unique: true,
   },
+ 
+  password: {
+    type: String,
+    required: true,
+  },
+ 
 
   estado: {
     type: String,
