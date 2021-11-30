@@ -73,7 +73,7 @@ const esquemaProyectos = new Schema<Proyecto>({
 
 
 esquemaProyectos.virtual('avances',{
-  ref:"Modelo",
+  ref:"Avance",
   localField:"_id",
   foreignField:'proyecto',
 
