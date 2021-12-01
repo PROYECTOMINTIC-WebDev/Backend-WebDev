@@ -12,11 +12,11 @@ const validateToken = (token) => {
 };
 
 const generateToken = (payload) => {
-  if (payload.iat) {
+ /*  if (payload.iat) {
     delete payload.iat;
     delete payload.exp;
-  }
-  return jwt.sign(payload,process.env.JWT_SECRET, {
+  } */
+  return jwt.sign(payload,'secret', {
     expiresIn: '24h',
   });
 };
