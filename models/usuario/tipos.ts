@@ -43,6 +43,11 @@ const tiposUsuario = gql`
       estado: Enum_EstadoUsuario!
       rol: Enum_Rol!
     ): Usuario
+
+    editarEstado(
+      _id: ID!
+      estado: Enum_EstadoUsuario!
+    ): Usuario
   
   }
 `;
