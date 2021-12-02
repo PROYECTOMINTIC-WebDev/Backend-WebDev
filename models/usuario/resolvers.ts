@@ -11,6 +11,11 @@ const resolverUsuario = {
     UsuariosEstudiantes: async (parent, args) => {
       const usuariosEstudiantes = await modeloUsuarios.find({rol:args.rol});
       return usuariosEstudiantes;
+    },
+
+    Usuario: async(parent, args) =>{
+      const usuario = await modeloUsuarios.findOne({_id:args._id});
+      return usuario;
     }
 
   },
