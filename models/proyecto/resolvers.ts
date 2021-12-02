@@ -5,6 +5,7 @@ const resolversProyecto = {
     //CONSULTA LOS USUARIOS EN LA BD
     Proyecto: async (parent, args) => {
       const proyectos = await modeloProyectos.find().populate("lider").populate('avances').populate('inscripciones');
+      console.log("Error",proyectos);
       return proyectos;
     },
   },

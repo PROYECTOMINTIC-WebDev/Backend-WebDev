@@ -3,11 +3,16 @@ import { modeloUsuarios } from "./usuario";
 const resolverUsuario = {
   Query: {
     //CONSULTA LOS USUARIOS EN LA BD
-    Usuario: async (parent, args) => {
-      const usuario = await modeloUsuarios.find();
-      return usuario;
+    Usuarios: async (parent, args) => {
+      const usuarios = await modeloUsuarios.find();
+      return usuarios;
     },
   
+    UsuariosEstudiantes: async (parent, args) => {
+      const usuariosEstudiantes = await modeloUsuarios.find({rol:args.rol});
+      return usuariosEstudiantes;
+    }
+
   },
   Mutation: {
     crearUsuario: async (parent, args) => {
