@@ -28,6 +28,7 @@ const resolverUsuario = {
         correo: args.correo,
         estado: args.estado,
         rol: args.rol,
+        password:args.password,
       });
       return usuarioCreado;
     },
