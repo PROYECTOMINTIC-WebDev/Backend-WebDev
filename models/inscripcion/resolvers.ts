@@ -1,7 +1,19 @@
 import { Enum_EstadoInscripcion } from "../enum/enum";
+import { modeloUsuarios } from "../usuario/usuario";
 import { modeloInscripciones } from "./inscripcion";
 
 const resolverIncripciones = {
+ /* de esta forma tambien funciona el pupulate de estudiante 
+ por lo que se puede aplicar a los virtualize y crear una consulta para 
+  cada campo foraneo ,por lo que nos ahorra escribir los virtual anidados 
+  ----------------
+  Inscripcion: {
+    estudiante: async (parent, args, context) => {
+      return await modeloUsuarios.findOne({ _id: parent.estudiante });
+    },
+  },
+  ---------------
+  */
   Query: {
     Inscripcion: async (parent, args) => {
       const inscripciones = await modeloInscripciones.find().populate('estudiante').populate('proyecto');
