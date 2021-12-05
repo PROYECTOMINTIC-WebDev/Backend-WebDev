@@ -20,11 +20,11 @@ const objectivesSchema = new Schema<Objetivo>({
         required:true,
     },
     //aqui deifinimos el proyecto de tipo Project 
-    proyecto:{
-        type:Schema.Types.ObjectId,
-        required:true,
-        ref:modeloProyectos,
-    }
+    //proyecto:{
+    //    type:Schema.Types.ObjectId,
+    //    required:true,
+    //    ref:modeloProyectos,
+    //}
 })
 
 //aqui creamos el modelo del schema creado 
