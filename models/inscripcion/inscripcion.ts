@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
-import {Enum_EstadoInscripcion} from './enum';
-import { UserModel } from "./user";
-import {ProyectModel} from './project';
-interface Inscripcion{
+import {Enum_EstadoInscripcion} from '../enum/enum';
+import { modeloUsuarios } from "../usuario/usuario";
+import { modeloProyectos } from '../proyecto/proyecto';
 
+interface Inscripcion{
     proyecto:Schema.Types.ObjectId,
     estudiante:Schema.Types.ObjectId,
     estado:Enum_EstadoInscripcion,
@@ -11,39 +11,35 @@ interface Inscripcion{
     fechaEgreso:Date,
 }
 
-const inscripcionSchema = new Schema<Inscripcion>({
-     
+const esquemaInscripciones = new Schema<Inscripcion>({
     estado:{
        type: String,
        enum:Enum_EstadoInscripcion,
        required:true,
-
     },
     
     fechaIngreso:{
         type:Date,
-        required:true
+        required:false,
     },
     fechaEgreso:{
         type:Date,
-        required:true
+        required:false,
     },
     proyecto:{
         type:Schema.Types.ObjectId,
-        ref:ProyectModel,
+        ref:modeloProyectos,
         required:true,
     }
     ,
     estudiante: {
         type:Schema.Types.ObjectId,
-        ref:UserModel,
+        ref:modeloUsuarios,
         required:true
     }
 
-
-
 })
 
-const IncripcionModel = model('Incripcion', inscripcionSchema)
+const modeloInscripciones = model('Incripcion', esquemaInscripciones, 'inscripciones')
 
-export {IncripcionModel};
+export {modeloInscripciones};

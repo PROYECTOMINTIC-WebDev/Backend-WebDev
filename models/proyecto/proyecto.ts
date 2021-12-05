@@ -3,12 +3,11 @@ import {
   Enum_EstadoProyecto,
   Enum_FaseProyecto,
   Enum_TipoObjetivo,
-} from "./enum";
-import { UserModel } from "./user";
+} from "../enum/enum";
+import { modeloUsuarios } from "../usuario/usuario";
 
-//DATOS QUE VAN EN LA INTERFAZ DE LOS PROYECTOS
 interface Proyecto {
-  nombreProyecto: string;
+  nombre: string;
   presupuesto: number;
   FechaInicio: Date;
   FechaFin: Date;
@@ -18,8 +17,8 @@ interface Proyecto {
   objetivos: [{ descripcion: String; tipo: Enum_TipoObjetivo }];
 }
 
-const projectShema = new Schema<Proyecto>({
-  nombreProyecto: {
+const esquemaProyectos = new Schema<Proyecto>({
+  nombre: {
     type: String,
     required: true,
   },
@@ -38,21 +37,21 @@ const projectShema = new Schema<Proyecto>({
   estado: {
     type: String,
     enum: Enum_EstadoProyecto,
-    default: Enum_EstadoProyecto.inactivo,
+    default: Enum_EstadoProyecto.INACTIVO,
   },
   fase: {
     type: String,
     enum: Enum_FaseProyecto,
-    default: Enum_FaseProyecto.nulo,
+    
+    default: Enum_FaseProyecto.NULO,
   },
   lider: {
-    //DEL LIDER SE NECESITAN DOS DATOS: NOMBRE E IDENTIFICACIÓN, entonces estos datos se toman desde usuarios ¿cómo se haria eso?
     //necesito relacionar con un id que esta relacionado a otro modelo
     type: Schema.Types.ObjectId,
     required: true,
-    ref: UserModel,
+    ref: modeloUsuarios,
   },
-  //aqui colocamos los objetivos como una coleccion de información 
+  //aqui colocamos los objetivos como una coleccion de infromacion 
   objetivos: [
     {
       descripcion: {
@@ -67,8 +66,24 @@ const projectShema = new Schema<Proyecto>({
       },
     },
   ],
+},{
+  toJSON:{virtuals:true},
+  toObject:{virtuals:true},
 });
 
-const ProyectModel = model("proyecto", projectShema);
 
-export { ProyectModel };
+esquemaProyectos.virtual('avances',{
+  ref:"Avance",
+  localField:"_id",
+  foreignField:'proyecto',
+
+})
+esquemaProyectos.virtual('inscripciones',{
+  ref:"Incripcion",
+  localField:"_id",
+  foreignField:'proyecto',
+
+})
+const modeloProyectos = model("Proyecto", esquemaProyectos, 'proyectos');
+
+export { modeloProyectos };

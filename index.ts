@@ -1,57 +1,52 @@
-import ConectarBD from "./DB/db";
-import {UserModel} from "./models/user";
-import { Enum_Rol, Enum_TipoObjetivo } from "./models/enum";
-import { ProyectModel } from "./models/project";
-const main = async ()=>{
+//prender nuestro servudor de graphql
+import { ApolloServer } from 'apollo-server-express';
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import ConectarBD from './DB/db';
+import {tipos} from './graphql/types';
+import {resolvers} from './graphql/resolvers';
+import { validateToken } from './utils/tokenUtils';
 
-    await ConectarBD();
+//Para poder usar variables de entorno en toda la app
+dotenv.config();
+let verificacion;
 
-  const proyectoCreado = await  ProyectModel.create({
-        nombre:'proyecto Metodo 3',
-        presupuesto:120000,
-        FechaInicio:Date.now(),
-        FechaFin: new Date("2021/12/25"),
-        lider: '618d43ec4071386efb2f312e',
-        objetivos:[
-            {descripcion: "este es el objetivo general", tipo:Enum_TipoObjetivo.general},
-            {descripcion: "este es el objetivo especifico 1", tipo:Enum_TipoObjetivo.especifico},
-            {descripcion: "este es el objetivo especifico 2", tipo:Enum_TipoObjetivo.especifico},
+const getUserData = (token) => {
+    verificacion= validateToken(token.split(' ')[1]);
+    console.log(verificacion)
+    if (verificacion.data) {
+      return verificacion.data; ;
+    } else {
+      return null;
+    }
+  };
+//Se instancia un servidor de Apolo
+const server = new ApolloServer({
+    typeDefs:tipos,
+    resolvers:resolvers,
+    context: ({ req }) => {
+        const token = req.headers?.authorization ?? null;
+        if (token) {
+          const userData = getUserData(token);
+          if (userData) {
+            return { userData };
+          }
+        }
+        return null;
+      }, 
+   
+});
 
-        ]
-    });
+const app = express();
 
+app.use(express.json());
 
-/*     const proyecto = await ProyectModel.find({nombre: 'proeycto 2'}).populate('lider');
+app.use(cors());
 
-console.log("el proyecti es ",proyecto);
- */
-
-//----------CRUD USUARIOS----------
-    // await UserModel.create({
-    //     correo:"manuelguma25@gmail.com",
-    //     identificacion: 1007409899,
-    //     nombre:"Jose",
-    //     apellido:"guzman1",
-    //     rol:Enum_Rol.administrador,
-    // }).then((u)=>{
-    //     console.log("usuario creado ", u);
-    // }).catch((e)=>{
-    //     console.log("error al crear usuario ", e);
-
-    // })  
-
-    //obtener los usuaios 
-
-
-    //  await UserModel.find()
-    //     .then((u)=>{
-    //         console.log('usuarios: ',u);
-    //     }).catch((e)=>{
-    //         console.log('error es ',e);
-            
-
-    //     }) 
-
-};
-
-main();
+app.listen({port:process.env.PORT || 4000}, async ()=>{
+   await ConectarBD();
+   await server.start();
+   server.applyMiddleware({app: app});
+   console.log("Servidor listo")
+});
