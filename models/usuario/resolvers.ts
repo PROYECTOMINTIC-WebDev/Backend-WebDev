@@ -35,7 +35,7 @@ const resolverUsuario = {
     eliminarUsuario: async (parent, args) => {
       const usuarioEliminado = await modeloUsuarios.findByIdAndDelete({
         _id: args._id,
-      });
+      }, {new: true});
       return usuarioEliminado;
     },
     editarUsuario: async (parent, args) => {
@@ -46,20 +46,17 @@ const resolverUsuario = {
         correo: args.correo,
         estado: args.estado,
         rol: args.rol,
-      });
+      }, {new: true});
       return usuarioEditar;
     },
-
     editarEstado: async (parent, args) => {
       const usuarioEditar = await modeloUsuarios.findByIdAndUpdate(args._id, {
         
         estado: args.estado,
         rol: args.rol,
-      });
+      }, {new: true});
       return usuarioEditar;
-    },
-
-  
+    },  
   },
 };
 export { resolverUsuario };

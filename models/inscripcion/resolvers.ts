@@ -33,21 +33,21 @@ const resolverIncripciones = {
         const inscripcionAprobada = await modeloInscripciones.findByIdAndUpdate(args._id, {
           estado: Enum_EstadoInscripcion.ACEPTADA,
           fechaIngreso: new Date(),
-        });
+        }, {new: true});
       return inscripcionAprobada;
     },
 
     rechazarInscripcion: async (parent,args) => {
       const inscripcionRechazada = await modeloInscripciones.findByIdAndUpdate(args._id, {
           estado: Enum_EstadoInscripcion.RECHAZADA,
-      });
+      }, {new: true});
     return inscripcionRechazada;
   },
 
     cerrarInscripcion: async (parent,args) => {
       const inscripcionCerrada = await modeloInscripciones.findByIdAndUpdate(args._id, {
-          fechaEgreso: new Date(),
-      });
+        fechaEgreso: new Date(),
+      }, {new: true});
     return inscripcionCerrada;
   },
 
