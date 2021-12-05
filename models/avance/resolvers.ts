@@ -44,13 +44,13 @@ const resolversAvance = {
         observaciones: args.observaciones,
         proyecto: args.proyecto,
         creadoPor: args.creadoPor,
-      });
+      }, {new: true});
       return avanceActualizado;
   },
   eliminarAvance: async (parent, args) => {
     const avanceEliminado = await modeloAvances.findByIdAndDelete({
       _id: args._id,
-    });
+    }, {new: true});
     return avanceEliminado;
   },
   },
