@@ -49,7 +49,6 @@ const resolverUsuario = {
       });
       return usuarioEditar;
     },
-
     editarEstado: async (parent, args) => {
       const usuarioEditar = await modeloUsuarios.findByIdAndUpdate(args._id, {
         
@@ -57,9 +56,7 @@ const resolverUsuario = {
         rol: args.rol,
       });
       return usuarioEditar;
-    },
-
-  
+    },  
   },
 };
 export { resolverUsuario };
