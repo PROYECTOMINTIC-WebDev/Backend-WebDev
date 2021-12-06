@@ -74,30 +74,30 @@ const tiposProyecto = gql`
 
     editarEstadoProyecto(
 
-      _id:String!
-      estado: Enum_EstadoProyecto!
+      _id:String!,
+      estado: Enum_EstadoProyecto!,
       fase: Enum_FaseProyecto!
 
     ):Proyecto
 
     crearObjetivo(
 
-      idProyecto: String!
+      idProyecto: String!,
       campos: crearObjetivo!
 
     ):Proyecto
 
     editarObjetivo(
       
-      idProyecto: String!
-      indexObjetivo: Int!
+      idProyecto: String!,
+      indexObjetivo: Int!,
       campos: camposObjetivo!
       
     ): Proyecto
 
     eliminarObjetivo(
 
-      idProyecto: String!
+      idProyecto: String!,
       idObjetivo: String!
       
     ): Proyecto
