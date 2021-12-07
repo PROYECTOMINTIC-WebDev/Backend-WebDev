@@ -11,7 +11,7 @@ const validateToken = (token) => {
       }
       if (err) {
         return {
-          error: err,
+          error: "contraseña incorrecta",
         };
       }
     });

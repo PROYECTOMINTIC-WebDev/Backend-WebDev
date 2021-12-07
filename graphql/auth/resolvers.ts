@@ -15,7 +15,7 @@ const resolversAutenticacion = {
         rol: args.rol,
         password: hashedPassword,
       });
-      console.log("usuario creado", usuarioCreado);
+    /*   console.log("usuario creado", usuarioCreado); */
       return {
         token: generateToken({
           _id: usuarioCreado._id,
@@ -40,11 +40,15 @@ const resolversAutenticacion = {
             rol: usuarioEncontrado.rol,
           }),
         };
+      }else{
+        return {
+         error: "Usuario o contraseña incorrectos",
+        };
       }
       
     },
     refreshToken:async (parent,args,context)=>{
-      console.log("ress",context)
+      /* console.log("ress",context) */
       if(!context.userData){
         return{
           error:"token no valido",
