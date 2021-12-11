@@ -36,7 +36,7 @@ const tiposProyecto = gql`
 
   type Query {
 
-    ListaProyectosAdministrador: [Proyecto]
+    Proyectos: [Proyecto]
     NuevasSolicitudesProyectos: [Proyecto]
     ListaProyectosEstudiante: [Proyecto]
     ProyectosEstudiante: [Proyecto]
@@ -76,7 +76,7 @@ const tiposProyecto = gql`
 
       _id:String!,
       estado: Enum_EstadoProyecto!,
-      fase: Enum_FaseProyecto!
+      fase: Enum_FaseProyecto
 
     ):Proyecto
 
