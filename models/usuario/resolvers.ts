@@ -4,7 +4,7 @@ const resolverUsuario = {
   Query: {
     //CONSULTA LOS USUARIOS EN LA BD
     Usuarios: async (parent, args) => {
-      const usuario = await modeloUsuarios.find();
+      const usuario = await modeloUsuarios.find({...args.filtro});
       return usuario;
     },
 
