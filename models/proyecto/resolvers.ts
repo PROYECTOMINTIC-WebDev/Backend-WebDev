@@ -4,6 +4,17 @@ import { modeloInscripciones } from "../inscripcion/inscripcion";
 
 
 const resolversProyecto = {
+
+  Proyecto:{
+    inscripciones: async(parent, args, context, info) => {
+      const inscripciones = await modeloInscripciones.find({
+        
+        proyecto: parent._id,
+       });
+       return inscripciones;
+    },  
+  
+  },
   Query: {
     //ADMINISTRADOR
 

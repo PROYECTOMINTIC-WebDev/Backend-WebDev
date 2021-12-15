@@ -15,6 +15,7 @@ const esquemaInscripciones = new Schema<Inscripcion>({
     estado:{
        type: String,
        enum:Enum_EstadoInscripcion,
+       default:Enum_EstadoInscripcion.PENDIENTE,
        required:true,
     },
     
