@@ -44,6 +44,17 @@ const tiposUsuario = gql`
       rol: Enum_Rol
     ): Usuario
 
+      
+    
+
+    editarPerfil(
+      _id: ID!,
+      nombre: String
+      apellido: String
+      identificacion: String
+      
+    ):Usuario
+
     editarEstado(
       _id: ID!
       estado: Enum_EstadoUsuario!

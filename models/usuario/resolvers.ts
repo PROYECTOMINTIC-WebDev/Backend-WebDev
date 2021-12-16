@@ -1,5 +1,6 @@
 import { modeloUsuarios } from "./usuario";
 
+
 const resolverUsuario = {
   Query: {
     //CONSULTA LOS USUARIOS EN LA BD
@@ -38,6 +39,22 @@ const resolverUsuario = {
       }, {new: true});
       return usuarioEliminado;
     },
+
+    editarPerfil: async (parent, args)=> {
+      const usuarioEditado = await modeloUsuarios.findByIdAndUpdate(
+        args._id,{
+          nombre: args.nombre,
+          apellido: args.apellido,
+          identificacion: args.identificacion,
+        
+        
+      },{new:true});
+
+      return usuarioEditado;
+    },
+
+  
+
     editarUsuario: async (parent, args) => {
       const usuarioEditar = await modeloUsuarios.findByIdAndUpdate(args._id, {
         nombre: args.nombre,
