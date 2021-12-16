@@ -23,7 +23,7 @@ const resolverIncripciones = {
   Mutation: {
     crearInscripcion: async (parent, args) => {
       const inscripcionCreada = await modeloInscripciones.create({
-        estado: Enum_EstadoInscripcion.PENDIENTE,
+       
         proyecto: args.proyecto,
         estudiante: args.estudiante,
       });

@@ -4,10 +4,21 @@ import { modeloInscripciones } from "../inscripcion/inscripcion";
 
 
 const resolversProyecto = {
+
+  Proyecto:{
+    inscripciones: async(parent, args, context, info) => {
+      const inscripciones = await modeloInscripciones.find({
+        
+        proyecto: parent._id,
+       });
+       return inscripciones;
+    },  
+  
+  },
   Query: {
     //ADMINISTRADOR
 
-    ListaProyectosAdministrador: async (parent, args) => {
+    Proyectos: async (parent, args) => {
       
       const proyectos = await modeloProyectos.find().populate('lider').populate('avances').populate('inscripciones');
 
@@ -74,7 +85,7 @@ const resolversProyecto = {
 
     editarEstadoProyecto: async (parent, args)=>{
 
-      if (args.estado === 'ACTIVO' && args.fase === 'NULO'){
+      if (args.estado === 'ACTIVO' ){
 
         const proyectoEditado = await modeloProyectos.findByIdAndUpdate(args._id,{
           estado: args.estado,
@@ -84,9 +95,19 @@ const resolversProyecto = {
 
         return proyectoEditado;
       }
+      if (args.estado === 'INACTIVO'){
+
+        const proyectoEditado = await modeloProyectos.findByIdAndUpdate(args._id,{
+          estado: args.estado,
+          fase: Enum_FaseProyecto.TERMINADO,
+          fechaInicio: new Date().toISOString().split("T")[0]
+        },{new:true});
+
+        return proyectoEditado;
+      }
 
       
-      else if (args.estado === 'ACTIVO' && args.fase === 'DESARROLLO' || args.fase === 'DESARROLLO' && args.estado === 'ACTIVO') {
+ /*      else if (args.estado === 'ACTIVO' && args.fase === 'DESARROLLO' || args.fase === 'DESARROLLO' && args.estado === 'ACTIVO') {
 
         const proyectoEditado = await modeloProyectos.findByIdAndUpdate(args._id,{
 
@@ -127,7 +148,7 @@ const resolversProyecto = {
               estado:args.estado
           },{new:true});
           return proyectoEditado;
-      }
+      } */
     
     },
 
