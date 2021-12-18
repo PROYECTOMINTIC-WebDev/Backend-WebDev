@@ -1,24 +1,38 @@
 import { Enum_EstadoInscripcion } from "../enum/enum";
+import { modeloProyectos } from "../proyecto/proyecto";
 import { modeloUsuarios } from "../usuario/usuario";
 import { modeloInscripciones } from "./inscripcion";
 
 const resolverIncripciones = {
- /* de esta forma tambien funciona el pupulate de estudiante 
- por lo que se puede aplicar a los virtualize y crear una consulta para 
-  cada campo foraneo ,por lo que nos ahorra escribir los virtual anidados 
-  ----------------
   Inscripcion: {
+    proyecto: async (parent, args, context) => {
+      return await modeloProyectos.findOne({ _id: parent.proyecto });
+    },
     estudiante: async (parent, args, context) => {
       return await modeloUsuarios.findOne({ _id: parent.estudiante });
     },
   },
-  ---------------
-  */
   Query: {
-    Inscripcion: async (parent, args) => {
-      const inscripciones = await modeloInscripciones.find().populate('estudiante').populate('proyecto');
+    Inscripcion: async (parent, args, context) => {
+      let filtro = {};
+      if (context.userData) {
+        if (context.userData.rol === 'LIDER') {
+          const projects = await modeloProyectos.find({ lider: context.userData._id });
+          const projectList = projects.map((p) => p._id.toString());
+          filtro = {
+            proyecto: {
+              $in: projectList,
+            },
+          };
+        }
+      }
+      const inscripciones = await modeloInscripciones.find({ ...filtro });
       return inscripciones;
     },
+
+    // inscripcionesNoAprobadas: async () => {
+    //   const ina = await InscriptionModel.find({ estado: 'PENDIENTE' }).populate('estudiante');
+    // },
   },
   Mutation: {
     crearInscripcion: async (parent, args) => {

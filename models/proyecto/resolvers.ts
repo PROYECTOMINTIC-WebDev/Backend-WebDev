@@ -1,6 +1,7 @@
 import { modeloProyectos } from "./proyecto";
 import { Enum_EstadoProyecto, Enum_FaseProyecto } from "../enum/enum";
 import { modeloInscripciones } from "../inscripcion/inscripcion";
+import { modeloUsuarios } from "../usuario/usuario";
 
 
 const resolversProyecto = {
@@ -13,17 +14,40 @@ const resolversProyecto = {
        });
        return inscripciones;
     },  
+    lider: async (parent, args, context) => {
+      const usr = await modeloUsuarios.findOne({
+        _id: parent.lider.toString(),
+      });
+      return usr;
+    },
   
   },
+  
   Query: {
     //ADMINISTRADOR
+    Proyectos: async (parent, args, context) => {
+      if (context.userData) {
+        if (context.userData.rol === 'LIDER') {
+          const proyectos = await modeloProyectos.find({ lider: context.userData._id });
+          return proyectos;
+        } else {
+          
+          const proyectos = await modeloProyectos.find()
 
-    Proyectos: async (parent, args) => {
-      
-      const proyectos = await modeloProyectos.find().populate('lider').populate('avances').populate('inscripciones');
-
+          return proyectos;
+          // const proyectos = await ProjectModel.find({ lider: context.userData._id });
+          // return proyectos;
+        }
+      }
+      const proyectos = await modeloProyectos.find();
       return proyectos;
     },
+  /*   Proyectos: async (parent, args) => {
+      
+      const proyectos = await modeloProyectos.find()
+
+      return proyectos;
+    }, */
 
     NuevasSolicitudesProyectos: async (parent, args) => {
 
