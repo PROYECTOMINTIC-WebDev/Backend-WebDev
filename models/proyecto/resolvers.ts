@@ -107,6 +107,48 @@ const resolversProyecto = {
       return proyectoEditado;
     },
 
+
+    editarFaseProyecto: async (parent, args)=>{
+
+        const proyectoEditado = await modeloProyectos.findByIdAndUpdate(args._id,{
+          
+          fase: args.fase,
+          
+        },{new:true});
+
+        return proyectoEditado;
+        
+
+      },
+        
+      
+      
+      /*
+      if (args.fase === 'TERMINADO' && args.estado === 'ACTIVO' ){
+
+        const proyectoEditado = await modeloProyectos.findByIdAndUpdate(args._id,{
+          estado: args.estado,
+          fase: args.fase,
+          
+        },{new:true});
+
+        return proyectoEditado;
+      }
+
+      else if (args.fase === 'TERMINADO' && args.estado === 'INACTIVO' ) {
+
+        const proyectoEditado = await modeloProyectos.findByIdAndUpdate(args._id,{
+
+          estado: args.estado,
+          fase: args.fase
+        },{new:true});
+
+        return proyectoEditado
+        
+      }*/
+
+  
+
     editarEstadoProyecto: async (parent, args)=>{
 
       if (args.estado === 'ACTIVO' ){
@@ -119,6 +161,7 @@ const resolversProyecto = {
 
         return proyectoEditado;
       }
+      
       if (args.estado === 'INACTIVO'){
 
         const proyectoEditado = await modeloProyectos.findByIdAndUpdate(args._id,{
@@ -130,8 +173,8 @@ const resolversProyecto = {
         return proyectoEditado;
       }
 
-      
- /*      else if (args.estado === 'ACTIVO' && args.fase === 'DESARROLLO' || args.fase === 'DESARROLLO' && args.estado === 'ACTIVO') {
+/*      
+      else if (args.estado === 'ACTIVO' && args.fase === 'DESARROLLO' ) {
 
         const proyectoEditado = await modeloProyectos.findByIdAndUpdate(args._id,{
 
@@ -142,7 +185,7 @@ const resolversProyecto = {
         return proyectoEditado
         
       }
-
+    
       else if(args.fase === 'TERMINADO' && args.estado === 'ACTIVO'){
  
         const editarInscripciones = await modeloInscripciones.updateMany({proyecto: args._id},{
@@ -175,6 +218,8 @@ const resolversProyecto = {
       } */
     
     },
+
+    
 
       
 

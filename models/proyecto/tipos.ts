@@ -72,10 +72,17 @@ const tiposProyecto = gql`
 
     ): Proyecto
 
+    editarFaseProyecto(
+
+      _id:String,
+      fase: Enum_FaseProyecto
+
+    ):Proyecto
+
     editarEstadoProyecto(
 
       _id:String!,
-      estado: Enum_EstadoProyecto!,
+      estado: Enum_EstadoProyecto,
       fase: Enum_FaseProyecto
 
     ):Proyecto
